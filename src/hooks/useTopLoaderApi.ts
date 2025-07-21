@@ -104,7 +104,7 @@ export interface UseTopLoaderApi
 }
 
 
-export const useTopLoaderApi = ( options: UseTopLoaderApiOptions ): UseTopLoaderApi => {
+export const useTopLoaderApi = ( options: UseTopLoaderApiOptions = {} ): UseTopLoaderApi => {
 
 	const { onStart, onTick, onStop } = options
 
