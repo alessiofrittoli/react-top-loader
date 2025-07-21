@@ -1,25 +1,21 @@
-# React Node Module Starter ✇
+# React TopLoader 🏋🏼‍♂️
 
 [![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
 
-[![GitHub Sponsor][sponsor-badge]][sponsor-url] [![GitHub Sponsor][sponsor-count-badge]][sponsor-count-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Freact-node-module-starter
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Freact-node-module-starter
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/react-node-module-starter/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/react-node-module-starter
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/react-node-module-starter
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/react-node-module-starter/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Freact-node-module-starter.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Freact-node-module-starter
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Freact-node-module-starter
+[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Freact-top-loader
+[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Freact-top-loader
+[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/react-top-loader/badge.svg
+[coverage-url]: https://coveralls.io/github/alessiofrittoli/react-top-loader
+[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/react-top-loader
+[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/react-top-loader/overview
+[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Freact-top-loader.svg
+[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Freact-top-loader
+[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Freact-top-loader
 
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-[sponsor-count-badge]: https://img.shields.io/github/sponsors/alessiofrittoli?label=Sponsor&logo=GitHub
-[sponsor-count-url]: https://github.com/sponsors/alessiofrittoli
 
-## Starter repository for developing React node_modules
+## Displays a top loader progress while navigating on a different page
 
 ### Table of Contents
 
@@ -35,36 +31,18 @@
 
 ---
 
-### Getting started (delete once cloned in your project)
+### Getting started
 
-Run the following command to start using `react-node-module-starter` for your projects:
-
-```bash
-git clone git@github.com:alessiofrittoli/react-node-module-starter.git && git remote remove origin
-```
-
-install dependencies
+Run the following command to start using `react-top-loader` in your projects:
 
 ```bash
-pnpm i
-```
-
-Read the [Creating a repository from a template - GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for more in-detail informations about creating a new Repository from a template using GitHub web interface.
-
----
-
-### Getting started (customize based on your project needs)
-
-Run the following command to start using `{package_name}` in your projects:
-
-```bash
-npm i {package_name}
+npm i @alessiofrittoli/react-top-loader
 ```
 
 or using `pnpm`
 
 ```bash
-pnpm i {package_name}
+pnpm i @alessiofrittoli/react-top-loader
 ```
 
 ---
