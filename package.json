@@ -1,0 +1,127 @@
+{
+	"name": "@alessiofrittoli/react-node-module-starter",
+	"version": "0.1.0",
+	"description": "Starter repository for developing React node_modules",
+	"author": {
+		"name": "Alessio Frittoli",
+		"email": "info@alessiofrittoli.it",
+		"url": "https://alessiofrittoli.it"
+	},
+	"license": "MIT",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/alessiofrittoli"
+		}
+	],
+	"keywords": [
+		"nodejs",
+		"npm",
+		"react",
+		"node_modules"
+	],
+	"homepage": "https://github.com/alessiofrittoli/react-node-module-starter#readme",
+	"bugs": {
+		"url": "https://github.com/alessiofrittoli/react-node-module-starter/issues",
+		"email": "info@alessiofrittoli.it"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alessiofrittoli/react-node-module-starter.git"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			}
+		},
+		"./client": {
+			"import": {
+				"types": "./dist/client.d.mts",
+				"default": "./dist/client.mjs"
+			},
+			"require": {
+				"types": "./dist/client.d.ts",
+				"default": "./dist/client.js"
+			}
+		}
+	},
+	"sideEffects": false,
+	"scripts": {
+		"//1a": "*********************************************************************",
+		"//1b": "******************** DEV - BUILD - LINT - RELEASE *******************",
+		"//1c": "*********************************************************************",
+		"dev": "cross-env NODE_ENV=development tsup --watch",
+		"build:prod": "cross-env NODE_ENV=production tsup",
+		"build": "pnpm lint && pnpm test:ci && pnpm build:prod",
+		"lint": "eslint",
+		"release": "node scripts/release.js --verbose",
+		"//2a": "*********************************************************************",
+		"//2b": "***************************** UNIT TESTS ****************************",
+		"//2c": "*********************************************************************",
+		"test": "jest --verbose",
+		"test:watch": "jest --watchAll --verbose",
+		"test:ci": "jest --ci --verbose",
+		"//3a": "*********************************************************************",
+		"//3b": "************************ UNIT TESTS COVERAGE ************************",
+		"//3c": "*********************************************************************",
+		"test:coverage": "pnpm test:watch --coverage",
+		"test:coverage:ci": "pnpm test:ci --coverage",
+		"test:serve-coverage": "http-server ./coverage/lcov-report --gzip true -p 0 -o --silent",
+		"test:coverage:serve": "concurrently --prefix none --kill-others \"pnpm test:coverage\" \"pnpm test:serve-coverage\"",
+		"//4a": "*********************************************************************",
+		"//4b": "************************ TARGETED UNIT TESTS ************************",
+		"//4c": "*********************************************************************",
+		"test:jest": "pnpm test:watch jest.test.ts"
+	},
+	"devDependencies": {
+		"@alessiofrittoli/node-scripts": "3.1.0",
+		"@eslint/compat": "^1.3.1",
+		"@eslint/eslintrc": "^3.3.1",
+		"@eslint/js": "^9.31.0",
+		"@jest/globals": "^30.0.4",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.3.0",
+		"@testing-library/user-event": "^14.6.1",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^24.0.15",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"concurrently": "^9.2.0",
+		"cross-env": "^7.0.3",
+		"dotenv": "^17.2.0",
+		"eslint": "^9.31.0",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-server-components": "^1.2.0",
+		"globals": "^16.3.0",
+		"http-server": "^14.1.1",
+		"jest": "^30.0.4",
+		"jest-environment-jsdom": "^30.0.4",
+		"react": "^19",
+		"react-dom": "^19",
+		"ts-jest": "^29.4.0",
+		"ts-node": "^10.9.2",
+		"tsup": "^8.5.0",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.37.0"
+	},
+	"peerDependencies": {
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"react": "^19",
+		"react-dom": "^19"
+	}
+}
