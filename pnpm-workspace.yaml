@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
   - '@alessiofrittoli/type-utils'
   - esbuild
+  - sharp
   - unrs-resolver

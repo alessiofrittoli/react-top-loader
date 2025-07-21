@@ -44,14 +44,14 @@
 				"default": "./dist/index.js"
 			}
 		},
-		"./client": {
+		"./next": {
 			"import": {
-				"types": "./dist/client.d.mts",
-				"default": "./dist/client.mjs"
+				"types": "./dist/next/index.d.mts",
+				"default": "./dist/next/index.mjs"
 			},
 			"require": {
-				"types": "./dist/client.d.ts",
-				"default": "./dist/client.js"
+				"types": "./dist/next/index.d.ts",
+				"default": "./dist/next/index.js"
 			}
 		}
 	},
@@ -64,7 +64,7 @@
 		"build:prod": "cross-env NODE_ENV=production tsup",
 		"build": "pnpm lint && pnpm test:ci && pnpm build:prod",
 		"lint": "eslint",
-		"release": "node scripts/release.js --verbose",
+		"release": "node scripts/release.js --verbose --npm",
 		"//2a": "*********************************************************************",
 		"//2b": "***************************** UNIT TESTS ****************************",
 		"//2c": "*********************************************************************",
@@ -95,8 +95,8 @@
 		"@testing-library/user-event": "^14.6.1",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.0.15",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
 		"concurrently": "^9.2.0",
 		"cross-env": "^7.0.3",
 		"dotenv": "^17.2.0",
@@ -108,8 +108,9 @@
 		"http-server": "^14.1.1",
 		"jest": "^30.0.4",
 		"jest-environment-jsdom": "^30.0.4",
-		"react": "^19",
-		"react-dom": "^19",
+		"next": "15.4.2",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
 		"ts-jest": "^29.4.0",
 		"ts-node": "^10.9.2",
 		"tsup": "^8.5.0",
@@ -117,9 +118,14 @@
 		"typescript-eslint": "^8.37.0"
 	},
 	"peerDependencies": {
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
-		"react": "^19",
-		"react-dom": "^19"
+		"@types/react": "^19.1.0",
+		"@types/react-dom": "^19.1.0",
+		"next": "^15.3.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"dependencies": {
+		"@alessiofrittoli/react-hooks": "^3.3.0",
+		"@alessiofrittoli/url-utils": "^3.6.0"
 	}
 }
