@@ -10,4 +10,8 @@
 		"activityBarBadge.foreground":"#212121",
 		"activityBarBadge.background":"#58C4DC",
 	},
+	"editor.formatOnSave": true,
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 }
