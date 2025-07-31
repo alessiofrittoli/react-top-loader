@@ -1,6 +1,6 @@
 {
 	"name": "@alessiofrittoli/react-top-loader",
-	"version": "1.0.0-alpha.2",
+	"version": "1.0.0-alpha.3",
 	"description": "Displays a top loader progress while navigating on a different page",
 	"author": {
 		"name": "Alessio Frittoli",
