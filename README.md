@@ -58,6 +58,8 @@ TopLoader base API React hook.
 
 It provides status and methods needed to easly handle continuous progress update.
 
+This hook is internally used by [`TopLoaderProvider`](#toploaderprovider) Component but is exported for custom implementations.
+
 <details>
 
 <summary style="cursor:pointer">Parameters</summary>
@@ -86,6 +88,22 @@ An object defining progress status and methods.
 - start: `() => void` - Start the TopLoader work.
 - tick: `( amount?: number ) => boolean` - Tick TopLoader progress.
 - stop: `() => void` - Set progress to `100` and stop the TopLoader work.
+
+</details>
+
+---
+
+##### `useTopLoader`
+
+Access to the TopLoader React Context API.
+
+<details>
+
+<summary style="cursor:pointer">Returns</summary>
+
+Type: `UseTopLoaderApi`
+
+This hooks returns the [`useTopLoaderApi`](#usetoploaderapi) result exposed through the [`TopLoaderContext`](#toploadercontext).
 
 </details>
 
