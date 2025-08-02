@@ -101,7 +101,7 @@ export interface UseTopLoaderApi
 	 * Start the TopLoader work.
 	 * 
 	 */
-	start: () => void;
+	start: () => void
 	/**
 	 * Tick TopLoader progress.
 	 * 
@@ -119,6 +119,8 @@ export interface UseTopLoaderApi
 
 /**
  * TopLoader base API React hook.
+ * 
+ * It provides status and methods needed to easly handle continuous progress update.
  * 
  * @param options (Optional) An object defining custom options. See {@linkcode UseTopLoaderApiOptions} for more info.
  * @returns An object defining progress status and methods. See {@linkcode UseTopLoaderApi} for more info.
