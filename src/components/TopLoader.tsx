@@ -9,10 +9,32 @@ import { TopLoaderProgressBar, type TopLoaderProgressBarProps } from './TopLoade
 
 export interface TopLoaderProps extends TopLoaderProviderProps, Omit<TopLoaderProgressBarProps, 'progressBarRef'>
 {
+	/**
+	 * A React Component which renders a custom progress bar. It must accepts {@linkcode TopLoaderProgressBarProps} as props.
+	 * 
+	 */
 	Component?: React.FC<TopLoaderProgressBarProps>
 }
 
 
+/**
+ * Displays a top loader progress while navigating on a different page.
+ * 
+ * ⚠️ This Component should be mounted one single time
+ * preferably in the root layout of your application and shouldn't be unmounted when navigating on a different page.
+ * 
+ * This Component internally use the {@linkcode TopLoaderProvider} Component in order to expose the `useTopLoaderApi` widely in your app.
+ * 
+ * @example
+ * 
+ * ```tsx
+ * export const RootLayout: React.FC = () => (
+ * 	<TopLoader>
+ * 		...
+ * 	</TopLoader>
+ * )
+ * ```
+ */
 export const TopLoader: React.FC<TopLoaderProps> = ( {
 	Component = TopLoaderProgressBar, onStart, onTick, onStop, ...props
 } ) => {
@@ -25,6 +47,7 @@ export const TopLoader: React.FC<TopLoaderProps> = ( {
 				progressBarRef.current?.style.setProperty( 'opacity', '1' )
 				onStart?.()
 			}, [ onStart ] ) }
+			// 
 			onTick={ useCallback<OnTickHandler>( progress => {
 				progressBarRef.current?.style.setProperty( 'width', `${ progress }%` )
 				onTick?.( progress )
