@@ -19,6 +19,8 @@
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [API Reference](#api-reference)
+  - [React Hooks](#react-hooks)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -43,6 +45,67 @@ or using `pnpm`
 ```bash
 pnpm i @alessiofrittoli/react-top-loader
 ```
+
+---
+
+### API Reference
+
+#### React Hooks
+
+##### `useTopLoaderApi`
+
+TopLoader base API React hook.
+
+It provides status and methods needed to easly handle continuous progress update.
+
+This hook is internally used by [`TopLoaderProvider`](#toploaderprovider) Component but is exported for custom implementations.
+
+<details>
+
+<summary style="cursor:pointer">Parameters</summary>
+
+| Parameter         | Type                     | Default | Description                                                    |
+| ----------------- | ------------------------ | ------- | -------------------------------------------------------------- |
+| `options`         | `UseTopLoaderApiOptions` | `{}`    | An object defining custom options.                             |
+| `options.onStart` | `OnStartHandler`         | -       | A custom callback executed when the `start` method is called.  |
+| `options.onTick`  | `OnTickHandler`          | -       | A custom callback executed when the progress value is updated. |
+| `options.onStop`  | `OnStopHandler`          | -       | A custom callback executed when the `stop` method is called.   |
+
+</details>
+
+---
+
+<details>
+
+<summary style="cursor:pointer">Returns</summary>
+
+Type: `UseTopLoaderApi`
+
+An object defining progress status and methods.
+
+- playing: `React.RefObject<boolean>` - A React.RefObject indicating whether the work is currently playing or not.
+- progress: `React.RefObject<number>` - A React.RefObject indicating the current progress value.
+- start: `() => void` - Start the TopLoader work.
+- tick: `( amount?: number ) => boolean` - Tick TopLoader progress.
+- stop: `() => void` - Set progress to `100` and stop the TopLoader work.
+
+</details>
+
+---
+
+##### `useTopLoader`
+
+Access to the TopLoader React Context API.
+
+<details>
+
+<summary style="cursor:pointer">Returns</summary>
+
+Type: `UseTopLoaderApi`
+
+This hooks returns the [`useTopLoaderApi`](#usetoploaderapi) result exposed through the [`TopLoaderContext`](#toploadercontext).
+
+</details>
 
 ---
 

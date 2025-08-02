@@ -1,12 +1,25 @@
 import { useCallback, useRef } from 'react'
 
-
-const clamp = ( input: number, min: number, max: number ) => (
+/**
+ * Clamp the given `input` with the given `min` and `max` value.
+ * 
+ * @param	input	The `input` value to clamp.
+ * @param	min		(Optional) The minimum value. Default `0`.
+ * @param	max		(Optional) The maximum value. Default `100`.
+ * @returns	The clamped value.
+ */
+const clamp = ( input: number, min: number = 0, max: number = 100 ) => (
 	Math.max( min, Math.min( max, input ) )
 )
 
 
-const getIncreaseAmount = ( progress: number ) => {
+/**
+ * Update progress value based on the given `progress`.
+ * 
+ * @param progress The current progress which will be increased.
+ * @returns The updated progress.
+ */
+const updateProgress = ( progress: number ) => {
 
 	if ( progress >= 0 && progress < 20 ) {
 		return progress + 5
@@ -88,14 +101,14 @@ export interface UseTopLoaderApi
 	 * Start the TopLoader work.
 	 * 
 	 */
-	start: () => void;
+	start: () => void
 	/**
 	 * Tick TopLoader progress.
 	 * 
-	 * @param progress (Optional) A custom progress value.
+	 * @param amount (Optional) A custom progress value.
 	 * @returns `false` if progress has been stopped, `true` if progress has been correctly ticked.
 	 */
-    tick: ( progress?: number ) => boolean
+    tick: ( amount?: number ) => boolean
 	/**
 	 * Set progress to `100` and stop the TopLoader work.
 	 * 
@@ -104,31 +117,39 @@ export interface UseTopLoaderApi
 }
 
 
+/**
+ * TopLoader base API React hook.
+ * 
+ * It provides status and methods needed to easly handle continuous progress update.
+ * 
+ * @param options (Optional) An object defining custom options. See {@linkcode UseTopLoaderApiOptions} for more info.
+ * @returns An object defining progress status and methods. See {@linkcode UseTopLoaderApi} for more info.
+ */
 export const useTopLoaderApi = ( options: UseTopLoaderApiOptions = {} ): UseTopLoaderApi => {
 
 	const { onStart, onTick, onStop } = options
 
-	const playingRef	= useRef( false )
-	const progressRef	= useRef( 0 )
-	const loopTimeoutRef= useRef<NodeJS.Timeout | number | null>( null )
+	const playing		= useRef( false )
+	const progress		= useRef( 0 )
+	const loopTimeout	= useRef<NodeJS.Timeout | number | null>( null )
 
 	const setProgressValue = useCallback( ( value: number ) => {
 
-		const clamped		= clamp( value, 0, 100 )
-		progressRef.current	= clamped
+		const clamped		= clamp( value )
+		progress.current	= clamped
 
 		onTick?.( clamped )
 
 	}, [ onTick ] )
 
 
-	const tick = useCallback<UseTopLoaderApi[ 'tick' ]>( ( progress?: number ) => {
+	const tick = useCallback<UseTopLoaderApi[ 'tick' ]>( ( amount?: number ) => {
 
-		if ( ! playingRef.current || progressRef.current >= 100 ) {
+		if ( ! playing.current || progress.current >= 100 ) {
 			return false
 		}
 
-		setProgressValue( progress ?? getIncreaseAmount( progressRef.current ) )
+		setProgressValue( amount ?? updateProgress( progress.current ) )
 
 		return true
 
@@ -137,12 +158,12 @@ export const useTopLoaderApi = ( options: UseTopLoaderApiOptions = {} ): UseTopL
 
 	const start = useCallback<UseTopLoaderApi[ 'start' ]>( () => {
 
-		playingRef.current = true
+		playing.current = true
 		onStart?.()
 
 		const loop = () => {
 
-			loopTimeoutRef.current = setTimeout( () => {
+			loopTimeout.current = setTimeout( () => {
 
 				if ( ! tick() ) return
 				
@@ -159,12 +180,12 @@ export const useTopLoaderApi = ( options: UseTopLoaderApiOptions = {} ): UseTopL
 
 	const stop = useCallback<UseTopLoaderApi[ 'stop' ]>( () => {
 
-		if ( ! playingRef.current ) return
+		if ( ! playing.current ) return
 
-		playingRef.current = false
+		playing.current = false
 
-		if ( loopTimeoutRef.current ) {
-			clearTimeout( loopTimeoutRef.current )
+		if ( loopTimeout.current ) {
+			clearTimeout( loopTimeout.current )
 		}
 
 		setProgressValue( 100 )
@@ -181,7 +202,7 @@ export const useTopLoaderApi = ( options: UseTopLoaderApiOptions = {} ): UseTopL
 
 
 	return {
-		playing: playingRef, progress: progressRef, start, tick, stop,
+		playing, progress, start, tick, stop,
 	}
 	
 }
