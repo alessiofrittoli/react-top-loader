@@ -20,7 +20,12 @@
 
 - [Getting started](#getting-started)
 - [API Reference](#api-reference)
+  - [React Components](#react-components)
+    - [`TopLoader`](#toploader)
+    - [`TopLoaderProgressBar`](#toploaderprogressbar)
   - [React Hooks](#react-hooks)
+    - [`useTopLoaderApi`](#usetoploaderapi)
+    - [`useTopLoader`](#usetoploader)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -48,7 +53,65 @@ pnpm i @alessiofrittoli/react-top-loader
 
 ---
 
+### Overview
+
+Progress updates aren't managed via React state updates but they're based on simple CSS modifications.
+
+This library listen for link clicks, history push and replace states and checks effective navigation in order to start updating navigation progresses.
+
+To avoid negatively impacting your application INP value we use the [`useDeferCallback`](https://npmjs.com/package/@alessiofrittoli/react-hooks#usedefercallback) exported by [`@alessiofrittoli/react-hooks`](https://npmjs.com/package/@alessiofrittoli/react-hooks) library which defers tasks attached to user interactions.
+
+---
+
 ### API Reference
+
+#### React Components
+
+##### `TopLoader`
+
+Displays a top loader progress while navigating on a different page.
+
+⚠️ This Component should be mounted once, preferably in the root layout of your application and shouldn't be unmounted when navigating on a different page.
+
+This Component internally use the [`TopLoaderProvider`](#toploaderprovider) Component in order to expose the [`useTopLoaderApi`](#usetoploaderapi) widely in your app.
+
+<details>
+
+<summary style="cursor:pointer">Component Props</summary>
+
+| Property    | Type                                  | Description                                                                                                                                |
+| ----------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Component` | `React.FC<TopLoaderProgressBarProps>` | A React Component which renders a custom progress bar. It must accepts [`TopLoaderProgressBarProps`](#toploaderprogressbarprops) as props. |
+
+Other properties are inherited by the [`TopLoaderProviderProps`](#toploaderproviderprops) and [`TopLoaderProgressBarProps`](#toploaderprogressbarprops).
+
+</details>
+
+---
+
+##### `TopLoaderProgressBar`
+
+Simple TopLoader progress bar.
+
+It requires a React.RefObject through the `progressBarRef` property which will be used to update the progress bar styles based on the current progress value.
+
+This Component is internally used by the [`TopLoader`](#toploader) Component but it is exported for custom implementations.
+
+###### `TopLoaderProgressBarProps`
+
+<details>
+
+<summary style="cursor:pointer">Component Props</summary>
+
+| Property         | Type                                    | Description                                                                                                                     |
+| ---------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `progressBarRef` | `React.RefObject<HTMLDivElement\|null>` | The `React.RefObject` attached to the `HTMLDivElement` which is then used to update styles based on the current progress value. |
+
+Other properties are inherited by the `React.ComponentProps<'div'>` type and not documented here.
+
+</details>
+
+---
 
 #### React Hooks
 
@@ -58,7 +121,7 @@ TopLoader base API React hook.
 
 It provides status and methods needed to easly handle continuous progress update.
 
-This hook is internally used by [`TopLoaderProvider`](#toploaderprovider) Component but is exported for custom implementations.
+This hook is internally used by [`TopLoaderProvider`](#toploaderprovider) Component but it is exported for custom implementations.
 
 <details>
 
