@@ -21,6 +21,7 @@
 - [Getting started](#getting-started)
 - [API Reference](#api-reference)
   - [React Components](#react-components)
+    - [`TopLoader`](#toploader)
     - [`TopLoaderProgressBar`](#toploaderprogressbar)
   - [React Hooks](#react-hooks)
     - [`useTopLoaderApi`](#usetoploaderapi)
@@ -66,6 +67,26 @@ To avoid negatively impacting your application INP value we use the [`useDeferCa
 
 #### React Components
 
+##### `TopLoader`
+
+Displays a top loader progress while navigating on a different page.
+
+⚠️ This Component should be mounted once, preferably in the root layout of your application and shouldn't be unmounted when navigating on a different page.
+
+This Component internally use the [`TopLoaderProvider`](#toploaderprovider) Component in order to expose the [`useTopLoaderApi`](#usetoploaderapi) widely in your app.
+
+<summary style="cursor:pointer">Component Props</summary>
+
+| Property    | Type                                  | Description                                                                                                                                |
+| ----------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Component` | `React.FC<TopLoaderProgressBarProps>` | A React Component which renders a custom progress bar. It must accepts [`TopLoaderProgressBarProps`](#toploaderprogressbarprops) as props. |
+
+Other properties are inherited by the [`TopLoaderProviderProps`](#toploaderproviderprops) and [`TopLoaderProgressBarProps`](#toploaderprogressbarprops).
+
+</details>
+
+---
+
 ##### `TopLoaderProgressBar`
 
 Simple TopLoader progress bar.
@@ -85,26 +106,6 @@ This Component is internally used by the [`TopLoader`](#toploader) Component but
 | `progressBarRef` | `React.RefObject<HTMLDivElement\|null>` | The `React.RefObject` attached to the `HTMLDivElement` which is then used to update styles based on the current progress value. |
 
 Other properties are inherited by the `React.ComponentProps<'div'>` type and not documented here.
-
-</details>
-
----
-
-##### `TopLoader`
-
-Displays a top loader progress while navigating on a different page.
-
-⚠️ This Component should be mounted one single time preferably in the root layout of your application and shouldn't be unmounted when navigating on a different page.
-
-This Component internally use the [`TopLoaderProvider`](#toploaderprovider) Component in order to expose the [`useTopLoaderApi`](#usetoploaderapi) widely in your app.
-
-<summary style="cursor:pointer">Component Props</summary>
-
-| Property    | Type                                  | Description                                                                                                                                |
-| ----------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Component` | `React.FC<TopLoaderProgressBarProps>` | A React Component which renders a custom progress bar. It must accepts [`TopLoaderProgressBarProps`](#toploaderprogressbarprops) as props. |
-
-Other properties are inherited by the [`TopLoaderProviderProps`](#toploaderproviderprops) and [`TopLoaderProgressBarProps`](#toploaderprogressbarprops).
 
 </details>
 
