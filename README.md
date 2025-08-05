@@ -75,6 +75,8 @@ Displays a top loader progress while navigating on a different page.
 
 This Component internally use the [`TopLoaderProvider`](#toploaderprovider) Component in order to expose the [`useTopLoaderApi`](#usetoploaderapi) widely in your app.
 
+<details>
+
 <summary style="cursor:pointer">Component Props</summary>
 
 | Property    | Type                                  | Description                                                                                                                                |
