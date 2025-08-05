@@ -47,7 +47,6 @@ export const TopLoader: React.FC<TopLoaderProps> = ( {
 				progressBarRef.current?.style.setProperty( 'opacity', '1' )
 				onStart?.()
 			}, [ onStart ] ) }
-			// 
 			onTick={ useCallback<OnTickHandler>( progress => {
 				progressBarRef.current?.style.setProperty( 'width', `${ progress }%` )
 				onTick?.( progress )
