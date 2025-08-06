@@ -30,6 +30,11 @@ const findClosestAnchor = ( element: HTMLElement | null ): HTMLAnchorElement | n
 export type TopLoaderProviderProps = React.PropsWithChildren<UseTopLoaderApiOptions>
 
 
+/**
+ * TopLoader React Context Provider.
+ * 
+ * Uses and exposes {@linkcode useTopLoaderApi} state and functions.
+ */
 export const TopLoaderProvider: React.FC<TopLoaderProviderProps> = ( { children, ...props } ) => {
 	
 	const topLoader			= useTopLoaderApi( props )

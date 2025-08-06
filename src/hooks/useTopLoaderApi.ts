@@ -63,7 +63,10 @@ export type OnTickHandler = ( progress: number ) => void
  */
 export type OnStopHandler = () => void
 
-
+/**
+ * Defines accepted properties in `useTopLoaderApi` options.
+ * 
+ */
 export interface UseTopLoaderApiOptions
 {
 	/**

@@ -26,6 +26,7 @@
   - [React Hooks](#react-hooks)
     - [`useTopLoaderApi`](#usetoploaderapi)
     - [`useTopLoader`](#usetoploader)
+  - [React Context API](#react-context-api)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -123,9 +124,61 @@ It provides status and methods needed to easly handle continuous progress update
 
 This hook is internally used by [`TopLoaderProvider`](#toploaderprovider) Component but it is exported for custom implementations.
 
+###### Types
+
+###### `UseTopLoaderApiOptions`
+
+Defines accepted properties in `useTopLoaderApi` options.
+
+- onStart?: [`OnStartHandler`](#onstarthandler) - A custom callback executed when the `start` method is called.
+- onTick?: [`OnTickHandler`](#ontickhandler) - A custom callback executed when the progress value is updated.
+- onStop?: [`OnStopHandler`](#onstophandler) - A custom callback executed when the `stop` method is called.
+
+---
+
+###### `OnStartHandler`
+
+A custom callback executed when the `start` method is called.
+
+```ts
+() => void
+```
+
+---
+
+###### `OnTickHandler`
+
+A custom callback executed when the progress value is updated.
+
+```ts
+( progress: number ) => void
+```
+
 <details>
 
 <summary style="cursor:pointer">Parameters</summary>
+
+| Parameter  | Type     | Description                                  |
+| ---------- | -------- | -------------------------------------------- |
+| `progress` | `number` | The progress value number from `0` to `100`. |
+
+</details>
+
+---
+
+###### `OnStopHandler`
+
+A custom callback executed when the `stop` method is called.
+
+```ts
+() => void
+```
+
+---
+
+<details>
+
+<summary style="cursor:pointer">Hook parameters</summary>
 
 | Parameter         | Type                     | Default | Description                                                    |
 | ----------------- | ------------------------ | ------- | -------------------------------------------------------------- |
@@ -167,6 +220,30 @@ Access to the TopLoader React Context API.
 Type: `UseTopLoaderApi`
 
 This hooks returns the [`useTopLoaderApi`](#usetoploaderapi) result exposed through the [`TopLoaderContext`](#toploadercontext).
+
+</details>
+
+---
+
+#### React Context API
+
+##### `TopLoaderContext`
+
+The `TopLoaderContext` creates a React Context that allows [`useTopLoaderApi`](#usetoploaderapi) exposure.
+
+---
+
+##### `TopLoaderProvider`
+
+The `TopLoaderProvider` Component exposes the [`useTopLoaderApi`](#usetoploaderapi) state and functions and handles start, tick and stop of the TopLoader progress while navigating on a different page.
+
+###### `TopLoaderProviderProps`
+
+<details>
+
+<summary style="cursor:pointer">Component Props</summary>
+
+The Component accepts [`UseTopLoaderApiOptions`](#usetoploaderapioptions) and `children`.
 
 </details>
 
