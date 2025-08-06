@@ -6,6 +6,17 @@ import { Url, type UrlInput } from '@alessiofrittoli/url-utils'
 import { useTopLoader } from '@/hooks'
 
 
+/**
+ * Extends the Next.js router with top loader integration.
+ *
+ * This hook wraps the Next.js router and triggers a top loader animation
+ * whenever a navigation action (`push` or `replace`) changes the current pathname.
+ * 
+ * It exposes the standard router methods (`back`, `forward`, `refresh`, `prefetch`)
+ * along with the enhanced `push` and `replace` methods.
+ *
+ * @returns An object containing router navigation methods with top loader support.
+ */
 export const useRouter = (): AppRouterInstance => {
 
 	const { start }	= useTopLoader()
