@@ -27,6 +27,10 @@
     - [`useTopLoaderApi`](#usetoploaderapi)
     - [`useTopLoader`](#usetoploader)
   - [React Context API](#react-context-api)
+    - [TopLoaderContext](#toploadercontext)
+    - [TopLoaderProvider](#toploaderprovider)
+  - [Next.js Integration](#nextjs-integration)
+    - [useRouter](#userouter)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -246,6 +250,21 @@ The `TopLoaderProvider` Component exposes the [`useTopLoaderApi`](#usetoploadera
 The Component accepts [`UseTopLoaderApiOptions`](#usetoploaderapioptions) and `children`.
 
 </details>
+
+---
+
+#### Next.js Integration
+
+If you're developing a [Next.js](https://nextjs.org) web application with the [App Router](https://nextjs.org/docs/app), this library exports some wrappers required for a better integration.
+
+##### `useRouter`
+
+Extends the Next.js router with top loader integration.
+
+This hook wraps the Next.js router and triggers a top loader animation whenever a navigation action (`push` or `replace`) changes the current pathname.
+It exposes the standard router methods (`back`, `forward`, `refresh`, `prefetch`) along with the enhanced `push` and `replace` methods.
+
+It's usage remain unchanged so please refer to the official [`useRouter`](https://nextjs.org/docs/app/api-reference/functions/use-router) documention for more information.
 
 ---
 
