@@ -31,6 +31,7 @@
     - [TopLoaderProvider](#toploaderprovider)
   - [Next.js Integration](#nextjs-integration)
     - [useRouter](#userouter)
+  - [Usage examples](#usage-examples)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -265,6 +266,24 @@ This hook wraps the Next.js router and triggers a top loader animation whenever 
 It exposes the standard router methods (`back`, `forward`, `refresh`, `prefetch`) along with the enhanced `push` and `replace` methods.
 
 It's usage remain unchanged so please refer to the official [`useRouter`](https://nextjs.org/docs/app/api-reference/functions/use-router) documention for more information.
+
+---
+
+#### Usage examples
+
+##### Basic usage
+
+---
+
+##### Customizing progress bar styles
+
+---
+
+##### Progress bar custom component
+
+---
+
+##### Navigating with Next.js App Router
 
 ---
 
