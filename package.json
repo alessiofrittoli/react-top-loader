@@ -87,6 +87,7 @@
 		"test:coverage:serve": "concurrently --prefix none --kill-others \"pnpm test:coverage\" \"pnpm test:serve-coverage\""
 	},
 	"peerDependencies": {
+		"@alessiofrittoli/math-utils": "^3.0.1",
 		"@alessiofrittoli/react-hooks": "^4.3.0",
 		"@alessiofrittoli/url-utils": "^4.2.0",
 		"@types/react": "^19.3.0",
@@ -97,6 +98,7 @@
 	},
 	"devDependencies": {
 		"@alessiofrittoli/date-utils": "^4.3.0",
+		"@alessiofrittoli/math-utils": "^3.0.1",
 		"@alessiofrittoli/node-scripts": "^4.2.0",
 		"@alessiofrittoli/package-configs": "^1.14.1",
 		"@alessiofrittoli/react-hooks": "^4.3.1",
