@@ -1,24 +1,58 @@
-# React TopLoader 🏋🏼‍♂️
+<h1 align="center">React TopLoader 🏋🏼‍♂️</h1>
+<h2 align="center">
+  Displays a top loader progress while navigating on a different page
+</h2>
+<p align="center">
+  <a href="https://npmjs.org/package/@alessiofrittoli/react-top-loader">
+    <img src="https://img.shields.io/npm/v/@alessiofrittoli/react-top-loader" alt="Latest version"/>
+  </a>
+  <a href="https://coveralls.io/github/alessiofrittoli/react-top-loader">
+    <img src="https://coveralls.io/repos/github/alessiofrittoli/react-top-loader/badge.svg" alt="Test coverage"/>
+  </a>
+  <a href="https://socket.dev/npm/package/@alessiofrittoli/react-top-loader/overview">
+    <img src="https://socket.dev/api/badge/npm/package/@alessiofrittoli/react-top-loader" alt="Socket Security score"/>
+  </a>
+  <a href="https://npmjs.org/package/@alessiofrittoli/react-top-loader">
+    <img src="https://img.shields.io/npm/dm/@alessiofrittoli/react-top-loader.svg" alt="npm downloads"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/react-top-loader">
+    <img src="https://badgen.net/bundlephobia/dependency-count/@alessiofrittoli/react-top-loader" alt="Dependencies"/>
+  </a>
+  <a href="https://libraries.io/npm/%40alessiofrittoli%2Freact-top-loader">
+    <img src="https://img.shields.io/librariesio/release/npm/@alessiofrittoli/react-top-loader" alt="Dependencies status"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/react-top-loader">
+    <img src="https://badgen.net/bundlephobia/min/@alessiofrittoli/react-top-loader" alt="minified"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/react-top-loader">
+    <img src="https://badgen.net/bundlephobia/minzip/@alessiofrittoli/react-top-loader" alt="minizipped"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/react-top-loader">
+    <img src="https://badgen.net/bundlephobia/tree-shaking/@alessiofrittoli/react-top-loader" alt="Tree shakable"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/sponsors/alessiofrittoli">
+    <img src="https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2" alt="Fund this package"/>
+  </a>
+</p>
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Freact-top-loader
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Freact-top-loader
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/react-top-loader/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/react-top-loader
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/react-top-loader
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/react-top-loader/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Freact-top-loader.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Freact-top-loader
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Freact-top-loader
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-
-## Displays a top loader progress while navigating on a different page
 
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [Overview](#overview)
+- [Development](#development)
+  - [Local development](#local-development)
+  - [Production build](#production-build)
+  - [Unit tests](#unit-tests)
+    - [Run tests with coverage](#run-tests-with-coverage)
+  - [Contributing](#contributing)
+  - [Security](#security)
 - [API Reference](#api-reference)
   - [React Components](#react-components)
     - [`TopLoader`](#toploader)
@@ -32,13 +66,6 @@
   - [Next.js Integration](#nextjs-integration)
     - [useRouter](#userouter)
   - [Usage examples](#usage-examples)
-- [Development](#development)
-  - [Install depenendencies](#install-depenendencies)
-  - [Build the source code](#build-the-source-code)
-  - [ESLint](#eslint)
-  - [Jest](#jest)
-- [Contributing](#contributing)
-- [Security](#security)
 - [Credits](#made-with-)
 
 ---
@@ -66,6 +93,84 @@ Progress updates aren't managed via React state updates but they're based on sim
 This library listen for link clicks, history push and replace states and checks effective navigation in order to start updating navigation progresses.
 
 To avoid negatively impacting your application INP value we use the [`useDeferCallback`](https://npmjs.com/package/@alessiofrittoli/react-hooks#usedefercallback) exported by [`@alessiofrittoli/react-hooks`](https://npmjs.com/package/@alessiofrittoli/react-hooks) library which defers tasks attached to user interactions.
+
+---
+
+### Development
+
+Run the following to start development
+
+```shell
+nvm use
+
+pnpm i
+```
+
+#### Local development
+
+Run the following
+
+```shell
+pnpm dev
+```
+
+This will generate unminified output code, sourcemaps and will enable source file watcher.
+
+---
+
+#### Production build
+
+Run the following to create a local production build
+
+```shell
+pnpm build
+```
+
+This will generate minified output code without sourcemaps.
+
+---
+
+#### Unit tests
+
+Run all the defined test suites by running the following:
+
+```shell
+# Run tests and watch file changes.
+pnpm test:watch
+
+# Run tests in a CI environment.
+pnpm test:ci
+```
+
+---
+
+##### Run tests with coverage
+
+An HTTP server is then started to serve coverage files from `./coverage` folder.
+
+⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
+
+```shell
+pnpm test:coverage:serve
+```
+
+---
+
+#### Contributing
+
+Contributions are truly welcome!
+
+Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
+
+Help keep this project up to date with [GitHub Sponsor][sponsor-url].
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
+
+---
+
+#### Security
+
+If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ---
 
@@ -286,78 +391,6 @@ It's usage remain unchanged so please refer to the official [`useRouter`](https:
 ##### Navigating with Next.js App Router
 
 ---
-
-### Development
-
-#### Install depenendencies
-
-```bash
-npm install
-```
-
-or using `pnpm`
-
-```bash
-pnpm i
-```
-
-#### Build the source code
-
-Run the following command to test and build code for distribution.
-
-```bash
-pnpm build
-```
-
-#### [ESLint](https://www.npmjs.com/package/eslint)
-
-warnings / errors check.
-
-```bash
-pnpm lint
-```
-
-#### [Jest](https://npmjs.com/package/jest)
-
-Run all the defined test suites by running the following:
-
-```bash
-# Run tests and watch file changes.
-pnpm test:watch
-
-# Run tests in a CI environment.
-pnpm test:ci
-```
-
-- See [`package.json`](./package.json) file scripts for more info.
-
-Run tests with coverage.
-
-An HTTP server is then started to serve coverage files from `./coverage` folder.
-
-⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
-
-```bash
-test:coverage:serve
-```
-
----
-
-### Contributing
-
-Contributions are truly welcome!
-
-Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
-
-Help keep this project up to date with [GitHub Sponsor][sponsor-url].
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
----
-
-### Security
-
-If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ### Made with ☕
 
