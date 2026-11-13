@@ -1,61 +1,48 @@
-import '@testing-library/jest-dom'
-import { createRef } from 'react'
-import { render, screen } from '@testing-library/react'
 import { TopLoaderProgressBar } from '@/components/TopLoaderProgressBar'
+import { render, screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+import { createRef } from 'react'
 
-describe( 'TopLoaderProgressBar', () => {
-
-	it( 'renders children', () => {
-
+describe('TopLoaderProgressBar', () => {
+	it('renders children', () => {
 		render(
-			<TopLoaderProgressBar progressBarRef={ createRef() }>
+			<TopLoaderProgressBar progressBarRef={createRef()}>
 				<span>Child Content</span>
-			</TopLoaderProgressBar>
+			</TopLoaderProgressBar>,
 		)
 
-		expect( screen.getByText( 'Child Content' ) )
-			.toBeInTheDocument()
-		
-	} )
+		expect(screen.getByText('Child Content')).toBeInTheDocument()
+	})
 
-
-	it( 'renders a div with React ref and default width style', () => {
-
+	it('renders a div with React ref and default width style', () => {
 		const ref = createRef<HTMLDivElement>()
 
+		render(<TopLoaderProgressBar data-testid='progress' progressBarRef={ref} />)
+
+		const progressBar = screen.getByTestId('progress')
+
+		expect(progressBar).toBeInTheDocument()
+		expect(progressBar).toHaveStyle('width: 0%')
+		expect(ref.current).toBe(progressBar)
+	})
+
+	it('applies additional styles and props', () => {
 		render(
 			<TopLoaderProgressBar
 				data-testid='progress'
-				progressBarRef={ ref }
-			/>
-		)
-
-		const progressBar = screen.getByTestId( 'progress' )
-
-		expect( progressBar ).toBeInTheDocument()
-		expect( progressBar ).toHaveStyle( 'width: 0%' )
-		expect( ref.current ).toBe( progressBar )
-
-	} )
-
-
-	it( 'applies additional styles and props', () => {
-
-		render(
-			<TopLoaderProgressBar
-				data-testid='progress'
-				progressBarRef={ createRef() }
+				progressBarRef={createRef()}
 				className='custom-class'
-				style={ { background: 'red' } }
-			/>
+				style={{ background: 'red', height: 20 }}
+			/>,
 		)
 
-		const progressBar = screen.getByTestId( 'progress' )
+		const progressBar = screen.getByTestId('progress')
 
-		expect( progressBar ).toHaveStyle( 'width: 0%' )
-		expect( progressBar ).toHaveStyle( 'background: red' )
-		expect( progressBar ).toHaveClass( 'custom-class' )
-
-	} )
-
-} )
+		expect(progressBar).toHaveStyle({
+			width: '0%',
+			height: '20px',
+			'background-color': 'rgb(255, 0, 0)',
+		})
+		expect(progressBar).toHaveClass('custom-class')
+	})
+})

@@ -1,2 +1,2 @@
-export * from './TopLoader'
-export * from './TopLoaderProgressBar'
+export * from '@/components/TopLoader'
+export * from '@/components/TopLoaderProgressBar'

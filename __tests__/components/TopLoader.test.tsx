@@ -1,130 +1,112 @@
-import '@testing-library/jest-dom'
+import type { TopLoaderProgressBarProps } from '@/components/TopLoaderProgressBar'
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { TopLoader } from '@/components/TopLoader'
-import type { TopLoaderProgressBarProps } from '@/components/TopLoaderProgressBar'
+import { describe, expect, it, vi } from 'vitest'
 
-jest.mock( '@alessiofrittoli/react-hooks', () => ( {
-	useDeferCallback: ( fn: () => void ) => fn, // do not defer callback so we are not required to use Jest fake timers.
-} ) )
+vi.mock('@alessiofrittoli/react-hooks', () => ({
+	useDeferCallback: (fn: () => void) => fn, // do not defer callback so we are not required to use fake timers.
+}))
 
-const MockProgressBar: React.FC<TopLoaderProgressBarProps> = ( {
-	progressBarRef, style, children, ...props
-} ) => (
+const MockProgressBar: React.FC<TopLoaderProgressBarProps> = ({
+	progressBarRef,
+	style,
+	children,
+	...props
+}) => (
 	<>
-		{ children }
+		{children}
 		<div
-			ref={ progressBarRef }
-			style={ { ...style, width: '0%' } }
+			ref={progressBarRef}
+			style={{ ...style, width: '0%' }}
 			aria-hidden
 			data-testid='progress'
-			{ ...props }
-		>ProgressBar</div>
+			{...props}
+		>
+			ProgressBar
+		</div>
 	</>
 )
 
+describe('TopLoader', () => {
+	it('renders the default TopLoaderProgressBar component', () => {
+		render(<TopLoader />)
 
-describe( 'TopLoader', () => {
+		const progressBar = document.querySelector('[aria-hidden]')
 
-	it( 'renders the default TopLoaderProgressBar component', () => {
+		expect(progressBar).toBeInTheDocument()
+		expect(progressBar).toHaveStyle('width: 0%')
+	})
 
-		render( <TopLoader /> )
+	it('renders a custom Component if provided', () => {
+		render(<TopLoader Component={MockProgressBar} />)
 
-		const progressBar = document.querySelector( '[aria-hidden]' )
+		expect(screen.getByTestId('progress')).toHaveTextContent('ProgressBar')
+	})
 
-		expect( progressBar ).toBeInTheDocument()
-		expect( progressBar ).toHaveStyle( 'width: 0%' )
-
-	} )
-
-
-	it( 'renders a custom Component if provided', () => {
-
-		render(
-			<TopLoader
-				Component={ MockProgressBar }
-			/>
-		)
-
-		expect( screen.getByTestId( 'progress' ) )
-			.toHaveTextContent( 'ProgressBar' )
-
-	} )
-
-
-	it( 'calls onStart when starting progress', () => {
-
-		const onStart = jest.fn()
+	it('calls onStart when starting progress', () => {
+		const onStart = vi.fn()
 
 		const { container } = render(
-			<TopLoader onStart={ onStart }>
+			<TopLoader onStart={onStart}>
 				<a href='/other'>Link</a>
-			</TopLoader>
+			</TopLoader>,
 		)
 
-		const anchor = container.querySelector( 'a' )!
-		
-		act( () => {
-			fireEvent.click( anchor )
-		} )
+		const anchor = container.querySelector('a')!
 
-		expect( onStart ).toHaveBeenCalled()
+		act(() => {
+			fireEvent.click(anchor)
+		})
 
-	} )
+		expect(onStart).toHaveBeenCalled()
+	})
 
+	it('calls onTick when ticking progress', () => {
+		vi.useFakeTimers()
 
-	it( 'calls onTick when ticking progress', () => {
-
-		jest.useFakeTimers()
-
-		const onTick = jest.fn()
+		const onTick = vi.fn()
 
 		const { container } = render(
-			<TopLoader onTick={ onTick }>
+			<TopLoader onTick={onTick}>
 				<a href='/other'>Link</a>
-			</TopLoader>
+			</TopLoader>,
 		)
 
-		const anchor = container.querySelector( 'a' )!
-		
-		act( () => {
-			fireEvent.click( anchor )
-		} )
+		const anchor = container.querySelector('a')!
 
-		jest.runAllTimers()
+		act(() => {
+			fireEvent.click(anchor)
+		})
 
-		expect( onTick )
-			.toHaveBeenLastCalledWith( expect.any( Number ) )
+		vi.runAllTimers()
 
-		jest.useRealTimers()
+		expect(onTick).toHaveBeenLastCalledWith(expect.any(Number))
 
-	} )
+		vi.useRealTimers()
+	})
 
+	it('calls onStop when stopping progress', () => {
+		vi.useFakeTimers()
 
-	it( 'calls onStop when stopping progress', () => {
-
-		jest.useFakeTimers()
-
-		const onStop = jest.fn()
+		const onStop = vi.fn()
 
 		const { container } = render(
-			<TopLoader onStop={ onStop }>
+			<TopLoader onStop={onStop}>
 				<a href='/other'>Link</a>
-			</TopLoader>
+			</TopLoader>,
 		)
 
-		const anchor = container.querySelector( 'a' )!
-		
-		act( () => {
-			fireEvent.click( anchor )
-			window.history.pushState( {}, '', '/other' ) // push state so immediately calls `stop` method instead of ticking
-		} )
+		const anchor = container.querySelector('a')!
 
-		jest.runAllTimers()
+		act(() => {
+			fireEvent.click(anchor)
+			window.history.pushState({}, '', '/other') // push state so immediately calls `stop` method instead of ticking
+		})
 
-		expect( onStop ).toHaveBeenCalled()
+		vi.runAllTimers()
 
-		jest.useRealTimers()
+		expect(onStop).toHaveBeenCalled()
 
-	} )
-
-} )
+		vi.useRealTimers()
+	})
+})

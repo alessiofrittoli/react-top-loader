@@ -1,2 +1,2 @@
-export * from './useTopLoader'
-export * from './useTopLoaderApi'
+export * from '@/hooks/useTopLoader'
+export * from '@/hooks/useTopLoaderApi'

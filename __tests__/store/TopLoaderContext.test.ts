@@ -1,23 +1,17 @@
 import { TopLoaderContext } from '@/store/TopLoaderContext'
+import { describe, expect, it } from 'vitest'
 
+describe('TopLoaderContext', () => {
+	it('should be defined', () => {
+		expect(TopLoaderContext).toBeDefined()
+	})
 
-describe( 'TopLoaderContext', () => {	
+	it('should have the correct displayName', () => {
+		expect(TopLoaderContext.displayName).toBe('TopLoaderContext')
+	})
 
-	it( 'should be defined', () => {
-		expect( TopLoaderContext ).toBeDefined()
-	} )
-
-	
-	it( 'should have the correct displayName', () => {
-		expect( TopLoaderContext.displayName )
-			.toBe( 'TopLoaderContext' )
-	} )
-
-
-	it( 'should have undefined as default value', () => {
+	it('should have undefined as default value', () => {
 		// @ts-expect-error: _currentValue is internal
-		expect( TopLoaderContext._currentValue )
-			.toBeUndefined()
-	} )
-	
-} )
+		expect(TopLoaderContext._currentValue).toBeUndefined()
+	})
+})

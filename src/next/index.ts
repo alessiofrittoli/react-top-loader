@@ -1,3 +1,3 @@
 'use client'
 
-export * from './useRouter'
+export * from '@/next/useRouter'
